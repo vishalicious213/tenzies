@@ -7,18 +7,15 @@ export default function App() {
 
     useEffect(() => {
         console.log("Dice state changed")
-        let isHeldCount = 0
         let winningValue = dice[0].value
         let sameDieValue = false
 
         const allHeld = dice.every(die => die.isHeld)
-        console.log("All dice held", allHeld)
 
         dice.forEach(die => {
-            if (die.isHeld) {
-                isHeldCount ++
+            if (allHeld) {
+                console.log("All dice held", allHeld)
             }
-            // console.log("Held dice", isHeldCount)
 
             if (die.value === winningValue) {
                 sameDieValue = true
@@ -28,7 +25,7 @@ export default function App() {
             // console.log("Same die value", sameDieValue)
         })
 
-        if (isHeldCount === 10 && sameDieValue) {
+        if (allHeld && sameDieValue) {
             console.log("YOU WON!!!")
         }
     }, [dice])
