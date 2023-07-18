@@ -14,3 +14,8 @@ main {
     max-width: 800px;
     border-radius: .25rem;
 }
+
+.dice-container {
+    display: grid;
+    grid-template: auto auto / repeat(5, 1fr);
+}
