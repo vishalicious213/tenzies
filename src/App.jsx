@@ -1,9 +1,13 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Die from "./Die"
 
 export default function App() {
     const [dice, setDice] = useState(allNewDice)
     const [tenzies, setTenzies] = useState(false)
+
+    useEffect(() => {
+        console.log("Dice state changed")
+    }, [dice])
 
     // get new set of dice to start game
     function allNewDice() {
