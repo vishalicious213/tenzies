@@ -2,6 +2,16 @@ import React from "react"
 import Die from "./Die"
 
 export default function App() {
+    function allNewDice() {
+        let randomNumbersArray = []
+        for (let i = 0; i < 10; i++) {
+            randomNumbersArray.push(Math.ceil(Math.random() * 6))
+        }
+        console.log(randomNumbersArray)
+    }
+
+    allNewDice()
+
     return (
         <main>
             <section className="dice-container">
