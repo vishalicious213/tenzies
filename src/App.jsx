@@ -11,18 +11,21 @@ export default function App() {
         let winningValue = dice[0].value
         let sameDieValue = false
 
+        const allHeld = dice.every(die => die.isHeld)
+        console.log("All dice held", allHeld)
+
         dice.forEach(die => {
             if (die.isHeld) {
                 isHeldCount ++
             }
-            console.log("Held dice", isHeldCount)
+            // console.log("Held dice", isHeldCount)
 
             if (die.value === winningValue) {
                 sameDieValue = true
             } else {
                 sameDieValue = false
             }
-            console.log("Same die value", sameDieValue)
+            // console.log("Same die value", sameDieValue)
         })
 
         if (isHeldCount === 10 && sameDieValue) {
