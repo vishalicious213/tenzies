@@ -2,6 +2,6 @@ import React from "react"
 
 export default function App() {
     return (
-        <main>APP</main>
+        <main></main>
     )
 }
