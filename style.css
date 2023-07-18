@@ -21,10 +21,20 @@ main {
     background-color: #F5F5F5;
 }
 
+.title {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.instructions {
+    margin: 0 0 1rem;
+}
+
 .dice-container {
     display: grid;
     grid-template: auto auto / repeat(5, 1fr);
-    gap: 1.25rem
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
 }
 
 .die-face {

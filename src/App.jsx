@@ -4,6 +4,7 @@ import Die from "./Die"
 export default function App() {
     const [dice, setDice] = useState(allNewDice)
 
+    // get new set of dice to start game
     function allNewDice() {
         let newDice = []
         for (let i = 0; i < 10; i++) {
@@ -16,10 +17,23 @@ export default function App() {
         return newDice
     }
 
+    // roll new values for dice that are not held
     function rollDice() {
-        setDice(allNewDice)
+        // setDice(allNewDice)
+        setDice(prevDice => {
+            return prevDice.map((die, index) => {
+                if (die.isHeld) {
+                    return die
+                }
+                return {
+                    value: (Math.ceil(Math.random() * 6)),
+                    isHeld: false
+                }
+            })
+        })
     }
 
+    // freeze clicked dice from being rerolled
     function holdDice(id) {
         setDice(prevDice => {
             return prevDice.map((die, index) => {
@@ -36,6 +50,8 @@ export default function App() {
 
     return (
         <main>
+            <h1 className="title">Tenzies</h1>
+            <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
             <section className="dice-container">
                 {dice.map((die, index) => (
                     <Die 
