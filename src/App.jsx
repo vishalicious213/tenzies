@@ -1,7 +1,9 @@
-import React from "react"
+import React, { useState } from "react"
 import Die from "./Die"
 
 export default function App() {
+    const [dice, setDice] = useState(allNewDice)
+
     function allNewDice() {
         let newDice = []
         for (let i = 0; i < 10; i++) {
@@ -10,8 +12,6 @@ export default function App() {
 
         return newDice
     }
-
-    allNewDice()
 
     return (
         <main>
