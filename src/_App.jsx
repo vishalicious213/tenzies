@@ -1,6 +1,6 @@
 import React from "react"
 import Confetti from "react-confetti"
-import Die from "./Die"
+import Die from "./_Die"
 
 export default function App() {
     const [dice, setDice] = React.useState(allNewDice())
