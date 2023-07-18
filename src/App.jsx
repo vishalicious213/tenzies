@@ -33,8 +33,7 @@ export default function App() {
                         key={spot} 
                         value={die.value} 
                         isHeld={die.isHeld} 
-                        id={spot}
-                        holdDice={holdDice}
+                        holdDice={() => holdDice(spot)}
                     />
                 ))}
             </section>
