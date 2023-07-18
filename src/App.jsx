@@ -7,7 +7,10 @@ export default function App() {
     function allNewDice() {
         let newDice = []
         for (let i = 0; i < 10; i++) {
-            newDice.push(Math.ceil(Math.random() * 6))
+            newDice.push({
+                value: (Math.ceil(Math.random() * 6)),
+                isHeld: false
+            })
         }
 
         return newDice
@@ -21,7 +24,7 @@ export default function App() {
         <main>
             <section className="dice-container">
                 {/* spot, below is the index for each die in the array */}
-                {dice.map((die, spot) => <Die value={die} key={spot} />)}
+                {dice.map((die, spot) => <Die value={die.value} key={spot} />)}
             </section>
 
             <button className="roll-dice" onClick={rollDice}>Roll</button>
