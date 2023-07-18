@@ -3,11 +3,12 @@ import Die from "./Die"
 
 export default function App() {
     function allNewDice() {
-        let randomNumbersArray = []
+        let newDice = []
         for (let i = 0; i < 10; i++) {
-            randomNumbersArray.push(Math.ceil(Math.random() * 6))
+            newDice.push(Math.ceil(Math.random() * 6))
         }
-        console.log(randomNumbersArray)
+
+        return newDice
     }
 
     allNewDice()
