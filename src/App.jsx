@@ -37,13 +37,12 @@ export default function App() {
     return (
         <main>
             <section className="dice-container">
-                {/* spot, below is the index for each die in the array */}
-                {dice.map((die, spot) => (
+                {dice.map((die, index) => (
                     <Die 
-                        key={spot} 
+                        key={index} 
                         value={die.value} 
                         isHeld={die.isHeld} 
-                        holdDice={() => holdDice(spot)}
+                        holdDice={() => holdDice(index)}
                     />
                 ))}
             </section>
