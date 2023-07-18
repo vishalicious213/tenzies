@@ -7,6 +7,27 @@ export default function App() {
 
     useEffect(() => {
         console.log("Dice state changed")
+        let isHeldCount = 0
+        let winningValue = dice[0].value
+        let sameDieValue = false
+
+        dice.forEach(die => {
+            if (die.isHeld) {
+                isHeldCount ++
+            }
+            console.log("Held dice", isHeldCount)
+
+            if (die.value === winningValue) {
+                sameDieValue = true
+            } else {
+                sameDieValue = false
+            }
+            console.log("Same die value", sameDieValue)
+        })
+
+        if (isHeldCount === 10 && sameDieValue) {
+            console.log("YOU WON!!!")
+        }
     }, [dice])
 
     // get new set of dice to start game
