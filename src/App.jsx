@@ -24,7 +24,7 @@ export default function App() {
                 {dice.map((die, spot) => <Die value={die} key={spot} />)}
             </section>
 
-            <button onClick={rollDice}>Roll</button>
+            <button className="roll-dice" onClick={rollDice}>Roll</button>
         </main>
     )
 }
