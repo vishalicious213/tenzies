@@ -12,6 +12,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     height: 400px;
     max-width: 800px;
     padding: 1.25rem;
@@ -31,6 +32,12 @@ main {
     align-items: center;
     height: 3rem;
     width: 3rem;
+    background-color: white;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
     border-radius: .5rem;
+    cursor: pointer;
+}
+
+.die-num {
+    font-size: 1.75rem;
 }
