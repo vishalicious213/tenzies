@@ -3,6 +3,7 @@ import Die from "./Die"
 
 export default function App() {
     const [dice, setDice] = useState(allNewDice)
+    const [tenzies, setTenzies] = useState(false)
 
     // get new set of dice to start game
     function allNewDice() {
