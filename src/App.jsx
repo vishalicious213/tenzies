@@ -6,21 +6,12 @@ export default function App() {
     const [tenzies, setTenzies] = useState(false)
 
     useEffect(() => {
-        console.log("Dice state changed")
         let winningValue = dice[0].value
-        
         const allHeld = dice.every(die => die.isHeld)
         const sameDieValue = dice.every(die => die.value === winningValue)
 
-        if (allHeld) {
-            console.log("All dice held", allHeld)
-        }
-
-        if (sameDieValue) {
-            console.log("Same dice values", sameDieValue)
-        }
-
         if (allHeld && sameDieValue) {
+            setTenzies(true)
             console.log("YOU WON!!!")
         }
     }, [dice])
