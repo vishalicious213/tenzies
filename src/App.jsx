@@ -12,15 +12,13 @@ export default function App() {
         const allHeld = dice.every(die => die.isHeld)
         const sameDieValue = dice.every(die => die.value === winningValue)
 
-        dice.forEach(die => {
-            if (allHeld) {
-                console.log("All dice held", allHeld)
-            }
+        if (allHeld) {
+            console.log("All dice held", allHeld)
+        }
 
-            if (sameDieValue) {
-                console.log("Same dice values", sameDieValue)
-            }
-        })
+        if (sameDieValue) {
+            console.log("Same dice values", sameDieValue)
+        }
 
         if (allHeld && sameDieValue) {
             console.log("YOU WON!!!")
