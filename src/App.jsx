@@ -78,6 +78,9 @@ export default function App() {
 
     function startTimer() {
         console.log("start timer")
+        setInterval(function() {
+            setTime(prevTime => prevTime + 1)
+        }, 1000)
     }
 
     return (
