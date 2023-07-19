@@ -8,8 +8,8 @@ export default function App() {
     const [rolls, setRolls] = useState(0)
     const [time, setTime] = useState(0)
     const [countingTime, setCountingTime] = useState(false)
-    // const timer = setInterval(startTimer, 1000)
 
+    // when countingTime is true, start counting
     useEffect(() => {
         console.log('countingTime', countingTime)
         let timerInterval
@@ -27,6 +27,7 @@ export default function App() {
         }
     }, [countingTime])
 
+    // win game if tenzies is true / stop timer
     useEffect(() => {
         let winningValue = dice[0].value
         const allHeld = dice.every(die => die.isHeld)
@@ -72,10 +73,6 @@ export default function App() {
             setRolls(0)
             setCountingTime(false)
         }
-
-        // if (time === 0) {
-        //     startTimer()
-        // }
     }
 
     // freeze clicked dice from being rerolled
@@ -92,11 +89,8 @@ export default function App() {
             })
         })
 
-        startTimer()
-
-        // if (time === 0) {
-        //     startTimer()
-        // }
+        // startTimer()
+        setCountingTime(true)
     }
 
     function startTimer() {
@@ -104,13 +98,12 @@ export default function App() {
         // setInterval(function() {
         //     setTime(prevTime => prevTime + 1)
         // }, 1000)
-        setCountingTime(true)
+        // setCountingTime(true)
     }
 
     function stopTimer() {
         console.log("stop timer")
         setCountingTime(false)
-        // clearInterval(startTimer)
     }
 
     return (
