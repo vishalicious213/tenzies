@@ -1,4 +1,6 @@
 export default function Scores({scores}) {
+    const sortedByTime = scores.sort(function(a, b){return a.time - b.time})
+    const sortedByRolls = scores.sort(function(a, b){return a.roll - b.roll})
     return (
         <section className="scores">
             <h2>SCORES</h2>
@@ -6,7 +8,7 @@ export default function Scores({scores}) {
                 <div>ROLLS</div>
                 <div>TIME</div>
             </div>
-            {scores.map((score, index) => {
+            {sortedByTime.map((score, index) => {
                 return (
                     <div className="scoreboard" key={index}>
                         <div>{score.roll}</div>
