@@ -12,6 +12,8 @@ export default function App() {
     const [seeScores, setSeeScores] = useState(false)
     const [highScores, setHighScores] = useState(JSON.parse(localStorage.getItem("tenzies")) || [])
 
+// ⬇️ USEEFFECTS ⬇️
+
     // when countingTime is true, start incrementing with setTime
     useEffect(() => {
         let timerInterval
@@ -67,6 +69,8 @@ export default function App() {
         return newDice
     }
 
+// ⬇️ HELPER FUNCTIONS ⬇️
+
     // roll new values for dice that are not held
     function rollDice() {
         if (!tenzies) {
@@ -117,6 +121,8 @@ export default function App() {
         setSeeScores(prevState => !prevState)
         
     }
+
+// ⬇️ RENDER FUNCTIONS ⬇️
 
     function Game() {
         return (
