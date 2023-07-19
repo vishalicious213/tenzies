@@ -73,9 +73,9 @@ export default function App() {
             setCountingTime(false)
         }
 
-        if (time === 0) {
-            startTimer()
-        }
+        // if (time === 0) {
+        //     startTimer()
+        // }
     }
 
     // freeze clicked dice from being rerolled
@@ -92,9 +92,11 @@ export default function App() {
             })
         })
 
-        if (time === 0) {
-            startTimer()
-        }
+        startTimer()
+
+        // if (time === 0) {
+        //     startTimer()
+        // }
     }
 
     function startTimer() {
