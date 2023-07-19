@@ -93,19 +93,20 @@ export default function App() {
 
     // freeze clicked dice from being rerolled
     function holdDice(id) {
-        setDice(prevDice => {
-            return prevDice.map((die, index) => {
-                if (index === id) {
-                    return {
-                        ...die,
-                        isHeld: !die.isHeld
+        if (!tenzies) {
+            setDice(prevDice => {
+                return prevDice.map((die, index) => {
+                    if (index === id) {
+                        return {
+                            ...die,
+                            isHeld: !die.isHeld
+                        }
                     }
-                }
-                return die
+                    return die
+                })
             })
-        })
-
-        setCountingTime(true)
+            setCountingTime(true)
+        }
     }
 
     function stopTimer() {
