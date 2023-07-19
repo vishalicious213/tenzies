@@ -51,6 +51,10 @@ export default function App() {
             setDice(allNewDice)
             setRolls(0)
         }
+
+        if (time === 0) {
+            startTimer()
+        }
     }
 
     // freeze clicked dice from being rerolled
@@ -66,6 +70,14 @@ export default function App() {
                 return die
             })
         })
+
+        if (time === 0) {
+            startTimer()
+        }
+    }
+
+    function startTimer() {
+        console.log("start timer")
     }
 
     return (
