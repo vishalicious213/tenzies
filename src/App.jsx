@@ -38,7 +38,7 @@ export default function App() {
                 // console.log(scoresArray[0])
                 off(tenziesDB)
                 setHighScores([...scoresArray])
-                // console.log("loaded scores from snapshot", highScores)
+                console.log("loaded scores from snapshot", highScores)
             }
         })
     }, [])
@@ -82,19 +82,38 @@ export default function App() {
             ])
             console.log("set high after game", highScores)
     
-            onValue(tenziesDB, function(snapshot) {
-                console.log("snap-start")
-                if (snapshot.exists()) {
-                    set(tenziesDB, highScores)
-                    console.log("set", highScores)
-                    // off(tenziesDB)
-                } else {
-                    push(tenziesDB, highScores)
-                    console.log("push", highScores)
-                }
-            })
+            // onValue(tenziesDB, function(snapshot) {
+            //     console.log("snap-start", highScores)
+            //     updateScoresinDB(snapshot)
+                // if (snapshot.exists()) {
+                //     set(tenziesDB, highScores)
+                //     console.log("set", highScores)
+                //     // off(tenziesDB)
+                // } else {
+                //     push(tenziesDB, highScores)
+                //     console.log("push", highScores)
+                // }
+            // })
         }
     }, [dice])
+
+    useEffect(() => {
+        onValue(tenziesDB, function(snapshot) {
+            console.log("snap-start", highScores)
+            updateScoresinDB(snapshot)
+        })
+    }, [highScores])
+
+    async function updateScoresinDB(snapshot) {
+        if (snapshot.exists()) {
+            await set(tenziesDB, highScores)
+            console.log("set", highScores)
+            off(tenziesDB)
+        } else {
+            await push(tenziesDB, highScores)
+            console.log("push", highScores)
+        }
+    }
 
     // save highscore to localStorage
     // useEffect(() => {
