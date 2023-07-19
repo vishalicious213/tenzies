@@ -13,7 +13,6 @@ export default function App() {
     const [time, setTime] = useState(0)
     const [countingTime, setCountingTime] = useState(false)
     const [seeScores, setSeeScores] = useState(false)
-    // const [highScores, setHighScores] = useState(JSON.parse(localStorage.getItem("tenzies")) || [])
     const [highScores, setHighScores] = useState([])
     
     // FIREBASE
@@ -81,19 +80,6 @@ export default function App() {
                 }
             ])
             console.log("set high after game", highScores)
-    
-            // onValue(tenziesDB, function(snapshot) {
-            //     console.log("snap-start", highScores)
-            //     updateScoresinDB(snapshot)
-                // if (snapshot.exists()) {
-                //     set(tenziesDB, highScores)
-                //     console.log("set", highScores)
-                //     // off(tenziesDB)
-                // } else {
-                //     push(tenziesDB, highScores)
-                //     console.log("push", highScores)
-                // }
-            // })
         }
     }, [dice])
 
@@ -114,15 +100,6 @@ export default function App() {
             console.log("push", highScores)
         }
     }
-
-    // save highscore to localStorage
-    // useEffect(() => {
-    //     localStorage.setItem("tenzies", JSON.stringify(highScores))
-    //     // push(tenziesDB, JSON.stringify(highScores))
-    //     // let itemToRemove = ref(tenziesDB, tenziesDB.key)
-    //     // remove(itemToRemove)
-    //     set(tenziesDB, highScores)
-    // }, [highScores])
 
 // ⬇️ HELPER FUNCTIONS ⬇️
 
