@@ -105,31 +105,41 @@ export default function App() {
         
     }
 
+    function Game() {
+        return (
+            <>
+                <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+
+                <section className="dice-container">
+                    {dice.map((die, index) => (
+                        <Die 
+                            key={index} 
+                            value={die.value} 
+                            isHeld={die.isHeld} 
+                            holdDice={() => holdDice(index)}
+                        />
+                    ))}
+                </section>
+
+                <section className="stats">
+                    <div className="rolls">Rolls: {rolls}</div>
+                    <div className="time">Time: {time}s</div>
+                </section>
+
+                <button className="roll-dice" onClick={rollDice}>{tenzies ? "New Game" : "Roll"}</button>
+            </>
+        )
+    }
+
     return (
         <main>
             {tenzies && <Confetti />}
             <h1 className="title">Tenzies</h1>
-            <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+            <div id="see-scores" onClick={showScores}>
+                {seeScores ? "Hide high scores" : "See high scores"}
+            </div>
 
-            <section className="dice-container">
-                {dice.map((die, index) => (
-                    <Die 
-                        key={index} 
-                        value={die.value} 
-                        isHeld={die.isHeld} 
-                        holdDice={() => holdDice(index)}
-                    />
-                ))}
-            </section>
-
-            <section className="stats">
-                <div className="rolls">Rolls: {rolls}</div>
-                <div className="time">Time: {time}s</div>
-            </section>
-
-            <button className="roll-dice" onClick={rollDice}>{tenzies ? "New Game" : "Roll"}</button>
-            
-            <div id="see-scores" onClick={showScores}>See high scores</div>
+            {!seeScores && <Game />}
             {seeScores && <Scores />}
         </main>
     )
