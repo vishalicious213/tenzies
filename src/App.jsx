@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react"
 import Die from "./Die"
 import Scores from "./Scores"
 import Confetti from "react-confetti"
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
+import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+
 
 export default function App() {
     const [dice, setDice] = useState(allNewDice)
@@ -11,6 +14,16 @@ export default function App() {
     const [countingTime, setCountingTime] = useState(false)
     const [seeScores, setSeeScores] = useState(false)
     const [highScores, setHighScores] = useState(JSON.parse(localStorage.getItem("tenzies")) || [])
+    
+    // FIREBASE
+    const appSettings = {
+        databaseURL: "https://tenzies-cb2d4-default-rtdb.firebaseio.com/"
+    }
+    const app = initializeApp(appSettings)
+    const database = getDatabase(app)
+    const tenziesDB = ref(database, "tenzies")
+
+    console.log(app)
 
 // ⬇️ USEEFFECTS ⬇️
 
@@ -53,6 +66,8 @@ export default function App() {
     // save highscore to localStorage
     useEffect(() => {
         localStorage.setItem("tenzies", JSON.stringify(highScores))
+        // push(tenziesDB, JSON.stringify(highScores))
+        push(tenziesDB, highScores)
     }, [highScores])
 
     // get new set of dice to start game
