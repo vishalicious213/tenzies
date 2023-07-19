@@ -3,7 +3,7 @@ import Die from "./Die"
 import Scores from "./Scores"
 import Confetti from "react-confetti"
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push, onValue, off } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue, off, remove, set } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 
 export default function App() {
@@ -23,19 +23,29 @@ export default function App() {
     const app = initializeApp(appSettings)
     const database = getDatabase(app)
     const tenziesDB = ref(database, "tenzies")
+    // console.log(tenziesDB.key)
 
     // console.log(app)
 
 // ⬇️ USEEFFECTS ⬇️
 
+    // if snapshot exists, load it into state
     useEffect(() => {
         onValue(tenziesDB, function(snapshot) {
-            let scoresArray = Object.values(snapshot.val())
-            console.log(scoresArray[0])
-            off(tenziesDB)
-            setHighScores(scoresArray[0])
+            if (snapshot.exists()) {
+                let scoresArray = Object.values(snapshot.val())
+                console.log("scoresArray from firebase", scoresArray)
+                // console.log(scoresArray[0])
+                off(tenziesDB)
+                setHighScores([...scoresArray])
+                // console.log("loaded scores from snapshot", highScores)
+            }
         })
     }, [])
+
+    useEffect(() => {
+        console.log("loaded scores from snapshot", highScores)
+    }, [highScores])
 
     // when countingTime is true, start incrementing with setTime
     useEffect(() => {
@@ -70,15 +80,32 @@ export default function App() {
                     time: time
                 }
             ])
+            console.log("set high after game", highScores)
+    
+            onValue(tenziesDB, function(snapshot) {
+                console.log("snap-start")
+                if (snapshot.exists()) {
+                    set(tenziesDB, highScores)
+                    console.log("set", highScores)
+                    // off(tenziesDB)
+                } else {
+                    push(tenziesDB, highScores)
+                    console.log("push", highScores)
+                }
+            })
         }
     }, [dice])
 
     // save highscore to localStorage
-    useEffect(() => {
-        localStorage.setItem("tenzies", JSON.stringify(highScores))
-        // push(tenziesDB, JSON.stringify(highScores))
-        push(tenziesDB, highScores)
-    }, [highScores])
+    // useEffect(() => {
+    //     localStorage.setItem("tenzies", JSON.stringify(highScores))
+    //     // push(tenziesDB, JSON.stringify(highScores))
+    //     // let itemToRemove = ref(tenziesDB, tenziesDB.key)
+    //     // remove(itemToRemove)
+    //     set(tenziesDB, highScores)
+    // }, [highScores])
+
+// ⬇️ HELPER FUNCTIONS ⬇️
 
     // get new set of dice to start game
     function allNewDice() {
@@ -93,8 +120,6 @@ export default function App() {
 
         return newDice
     }
-
-// ⬇️ HELPER FUNCTIONS ⬇️
 
     // roll new values for dice that are not held
     function rollDice() {
