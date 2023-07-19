@@ -50,7 +50,6 @@ export default function App() {
 
     // save highscore to localStorage
     useEffect(() => {
-        console.log("high score useEffect")
         localStorage.setItem("tenzies", JSON.stringify(highScores))
     }, [highScores])
 
