@@ -110,6 +110,11 @@ main {
     padding-bottom: .25rem;
 }
 
+.scores-header button {
+    width: 5rem;
+    margin: 0 auto;
+}
+
 .scoreboard {
     display: grid;
     grid-template-columns: 1fr 1fr;
