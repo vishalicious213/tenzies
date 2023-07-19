@@ -41,6 +41,7 @@ export default function App() {
     // get new set of dice to start game
     function allNewDice() {
         let newDice = []
+
         for (let i = 0; i < 10; i++) {
             newDice.push({
                 value: (Math.ceil(Math.random() * 6)),
@@ -71,6 +72,7 @@ export default function App() {
             setDice(allNewDice)
             setRolls(0)
             setCountingTime(false)
+            setTime(0)
         }
     }
 
@@ -100,6 +102,7 @@ export default function App() {
             {tenzies && <Confetti />}
             <h1 className="title">Tenzies</h1>
             <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+
             <section className="dice-container">
                 {dice.map((die, index) => (
                     <Die 
