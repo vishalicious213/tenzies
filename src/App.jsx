@@ -48,11 +48,10 @@ export default function App() {
         }
     }, [dice])
 
+    // save highscore to localStorage
     useEffect(() => {
         console.log("high score useEffect")
-        // let newScores = highScores.push({roll: rolls, time: time})
-        // console.log("newScores", newScores)
-        // localStorage.setItem("tenzies", JSON.stringify(newScores))
+        localStorage.setItem("tenzies", JSON.stringify(highScores))
     }, [highScores])
 
     // get new set of dice to start game
