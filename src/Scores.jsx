@@ -9,8 +9,8 @@ export default function Scores({scores}) {
         <section className="scores">
             <h2>SCORES</h2>
             <div className="scores-header">
-                <button onClick={() => setScoreArray(sortedByRolls)}>ROLLS</button>
-                <button onClick={() => setScoreArray(sortedByTime)}>TIME</button>
+                <button onClick={() => setScoreArray(sortedByRolls)}>Rolls</button>
+                <button onClick={() => setScoreArray(sortedByTime)}>Time</button>
             </div>
 
             {scoreArray.map((score, index) => {
