@@ -13,7 +13,6 @@ export default function App() {
 
         if (allHeld && sameDieValue) {
             setTenzies(true)
-            console.log("YOU WON!!!")
         }
     }, [dice])
 
@@ -79,6 +78,11 @@ export default function App() {
                         holdDice={() => holdDice(index)}
                     />
                 ))}
+            </section>
+
+            <section className="stats">
+                <div className="rolls">Rolls: 0</div>
+                <div className="time">Time: 0:00</div>
             </section>
 
             <button className="roll-dice" onClick={rollDice}>{tenzies ? "New Game" : "Roll"}</button>

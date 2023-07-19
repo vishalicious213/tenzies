@@ -77,6 +77,13 @@ main {
     background-color: #59E391;
 }
 
+.stats {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 1rem;
+}
+
 @media screen and (min-width: 420px) {
     .die-face {
         height: 3rem;
