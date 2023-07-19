@@ -38,11 +38,22 @@ export default function App() {
         if (allHeld && sameDieValue) {
             setTenzies(true)
             stopTimer()
-            let newScores = highScores.push({roll: rolls, time: time})
-            console.log("newScores", newScores)
-            // localStorage.setItem("tenzies", JSON.stringify(newScores))
+            setHighScores(prevHighScore => [
+                ...prevHighScore,
+                {
+                    roll: rolls, 
+                    time: time
+                }
+            ])
         }
     }, [dice])
+
+    useEffect(() => {
+        console.log("high score useEffect")
+        // let newScores = highScores.push({roll: rolls, time: time})
+        // console.log("newScores", newScores)
+        // localStorage.setItem("tenzies", JSON.stringify(newScores))
+    }, [highScores])
 
     // get new set of dice to start game
     function allNewDice() {
@@ -144,7 +155,7 @@ export default function App() {
                 {seeScores ? "Hide high scores" : "See high scores"}
             </div>
 
-            {seeScores ? <Scores highscores={highScores} /> : <Game />}
+            {seeScores ? <Scores scores={highScores} /> : <Game />}
         </main>
     )
 }

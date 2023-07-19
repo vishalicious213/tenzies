@@ -1,11 +1,11 @@
-export default function Scores({highscores}) {
-    console.log(highscores)
+export default function Scores({scores}) {
+    console.log(scores)
     return (
         <section className="scores">
             <h2>SCORES</h2>
-            {highscores.map((score, index) => {
+            {scores.map((score, index) => {
                 return (
-                    <div key={index}>Roll: {score.roll} | Time: {score.time}</div>
+                    <div key={index}>Rolls: {score.roll} | Time: {score.time}</div>
                 )
             })}
         </section>
