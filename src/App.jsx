@@ -10,6 +10,7 @@ export default function App() {
     const [time, setTime] = useState(0)
     const [countingTime, setCountingTime] = useState(false)
     const [seeScores, setSeeScores] = useState(false)
+    const [highScores, setHighScores] = useState(JSON.parse(localStorage.getItem("tenzies")) || [])
 
     // when countingTime is true, start incrementing with setTime
     useEffect(() => {
@@ -37,6 +38,9 @@ export default function App() {
         if (allHeld && sameDieValue) {
             setTenzies(true)
             stopTimer()
+            let newScores = highScores.push({roll: rolls, time: time})
+            console.log("newScores", newScores)
+            // localStorage.setItem("tenzies", JSON.stringify(newScores))
         }
     }, [dice])
 
@@ -100,7 +104,7 @@ export default function App() {
     }
 
     function showScores() {
-        console.log("Showing scores")
+        // console.log("Showing scores")
         setSeeScores(prevState => !prevState)
         
     }
@@ -140,7 +144,7 @@ export default function App() {
                 {seeScores ? "Hide high scores" : "See high scores"}
             </div>
 
-            {seeScores ? <Scores /> : <Game />}
+            {seeScores ? <Scores highscores={highScores} /> : <Game />}
         </main>
     )
 }
