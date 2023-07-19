@@ -3,7 +3,7 @@ import Die from "./Die"
 import Scores from "./Scores"
 import Confetti from "react-confetti"
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue, off } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 
 export default function App() {
@@ -13,7 +13,8 @@ export default function App() {
     const [time, setTime] = useState(0)
     const [countingTime, setCountingTime] = useState(false)
     const [seeScores, setSeeScores] = useState(false)
-    const [highScores, setHighScores] = useState(JSON.parse(localStorage.getItem("tenzies")) || [])
+    // const [highScores, setHighScores] = useState(JSON.parse(localStorage.getItem("tenzies")) || [])
+    const [highScores, setHighScores] = useState([])
     
     // FIREBASE
     const appSettings = {
@@ -23,9 +24,18 @@ export default function App() {
     const database = getDatabase(app)
     const tenziesDB = ref(database, "tenzies")
 
-    console.log(app)
+    // console.log(app)
 
 // ⬇️ USEEFFECTS ⬇️
+
+    useEffect(() => {
+        onValue(tenziesDB, function(snapshot) {
+            let scoresArray = Object.values(snapshot.val())
+            console.log(scoresArray[0])
+            off(tenziesDB)
+            setHighScores(scoresArray[0])
+        })
+    }, [])
 
     // when countingTime is true, start incrementing with setTime
     useEffect(() => {
