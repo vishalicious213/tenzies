@@ -115,6 +115,10 @@ main {
     margin: 0 auto;
 }
 
+.scores-header button:hover {
+    cursor: pointer;
+}
+
 .scoreboard {
     display: grid;
     grid-template-columns: 1fr 1fr;
