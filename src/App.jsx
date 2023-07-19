@@ -9,14 +9,12 @@ export default function App() {
     const [time, setTime] = useState(0)
     const [countingTime, setCountingTime] = useState(false)
 
-    // when countingTime is true, start counting
+    // when countingTime is true, start incrementing with setTime
     useEffect(() => {
-        console.log('countingTime', countingTime)
         let timerInterval
 
         if (countingTime) {
             timerInterval = setInterval(() => {
-                // console.log("counting")
                 setTime(prevTime => prevTime + 1)
             }, 1000)
         } else {
@@ -94,7 +92,6 @@ export default function App() {
     }
 
     function stopTimer() {
-        console.log("stop timer")
         setCountingTime(false)
     }
 
