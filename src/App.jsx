@@ -32,18 +32,22 @@ export default function App() {
 
     // roll new values for dice that are not held
     function rollDice() {
-        // setDice(allNewDice)
-        setDice(prevDice => {
-            return prevDice.map((die, index) => {
-                if (die.isHeld) {
-                    return die
-                }
-                return {
-                    value: (Math.ceil(Math.random() * 6)),
-                    isHeld: false
-                }
+        if (!tenzies) {
+            setDice(prevDice => {
+                return prevDice.map((die, index) => {
+                    if (die.isHeld) {
+                        return die
+                    }
+                    return {
+                        value: (Math.ceil(Math.random() * 6)),
+                        isHeld: false
+                    }
+                })
             })
-        })
+        } else {
+            setTenzies(false)
+            setDice(allNewDice)
+        }
     }
 
     // freeze clicked dice from being rerolled
