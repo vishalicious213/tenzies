@@ -7,6 +7,21 @@ export default function App() {
     const [tenzies, setTenzies] = useState(false)
     const [rolls, setRolls] = useState(0)
     const [time, setTime] = useState(0)
+    const [countingTime, setCountingTime] = useState(false)
+    // const timer = setInterval(startTimer, 1000)
+
+    useEffect(() => {
+        console.log('countingTime', countingTime)
+        let timerInterval
+
+        if (countingTime) {
+            timerInterval = setInterval(() => {
+                console.log("counting")
+            }, 1000)
+        }
+
+
+    }, [countingTime])
 
     useEffect(() => {
         let winningValue = dice[0].value
@@ -15,6 +30,7 @@ export default function App() {
 
         if (allHeld && sameDieValue) {
             setTenzies(true)
+            stopTimer()
         }
     }, [dice])
 
@@ -77,10 +93,16 @@ export default function App() {
     }
 
     function startTimer() {
-        console.log("start timer")
-        setInterval(function() {
-            setTime(prevTime => prevTime + 1)
-        }, 1000)
+        // console.log("start timer")
+        // setInterval(function() {
+        //     setTime(prevTime => prevTime + 1)
+        // }, 1000)
+        setCountingTime(true)
+    }
+
+    function stopTimer() {
+        console.log("stop timer")
+        clearInterval(startTimer)
     }
 
     return (
