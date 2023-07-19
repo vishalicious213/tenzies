@@ -29,7 +29,7 @@ export default function App() {
         }
     }, [countingTime])
 
-    // win game if tenzies is true / stop timer
+    // win game if tenzies is true / stop timer / add to high scores
     useEffect(() => {
         let winningValue = dice[0].value
         const allHeld = dice.every(die => die.isHeld)
@@ -114,7 +114,6 @@ export default function App() {
     }
 
     function showScores() {
-        // console.log("Showing scores")
         setSeeScores(prevState => !prevState)
         
     }

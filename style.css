@@ -96,6 +96,7 @@ main {
 
 .scores {
     width: 100%;
+    max-width: 320px;
 }
 
 .scores h2 {
