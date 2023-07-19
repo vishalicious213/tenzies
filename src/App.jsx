@@ -22,9 +22,6 @@ export default function App() {
     const app = initializeApp(appSettings)
     const database = getDatabase(app)
     const tenziesDB = ref(database, "tenzies")
-    // console.log(tenziesDB.key)
-
-    // console.log(app)
 
 // ⬇️ USEEFFECTS ⬇️
 
@@ -33,18 +30,11 @@ export default function App() {
         onValue(tenziesDB, function(snapshot) {
             if (snapshot.exists()) {
                 let scoresArray = Object.values(snapshot.val())
-                console.log("scoresArray from firebase", scoresArray)
-                // console.log(scoresArray[0])
                 off(tenziesDB)
                 setHighScores([...scoresArray])
-                console.log("loaded scores from snapshot", highScores)
             }
         })
     }, [])
-
-    useEffect(() => {
-        console.log("loaded scores from snapshot", highScores)
-    }, [highScores])
 
     // when countingTime is true, start incrementing with setTime
     useEffect(() => {
@@ -79,13 +69,11 @@ export default function App() {
                     time: time
                 }
             ])
-            console.log("set high after game", highScores)
         }
     }, [dice])
 
     useEffect(() => {
         onValue(tenziesDB, function(snapshot) {
-            console.log("snap-start", highScores)
             updateScoresinDB(snapshot)
         })
     }, [highScores])
@@ -93,11 +81,9 @@ export default function App() {
     async function updateScoresinDB(snapshot) {
         if (snapshot.exists()) {
             await set(tenziesDB, highScores)
-            console.log("set", highScores)
             off(tenziesDB)
         } else {
             await push(tenziesDB, highScores)
-            console.log("push", highScores)
         }
     }
 
