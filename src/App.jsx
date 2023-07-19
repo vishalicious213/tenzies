@@ -134,13 +134,13 @@ export default function App() {
     return (
         <main>
             {tenzies && <Confetti />}
+
             <h1 className="title">Tenzies</h1>
             <div id="see-scores" onClick={showScores}>
                 {seeScores ? "Hide high scores" : "See high scores"}
             </div>
 
-            {!seeScores && <Game />}
-            {seeScores && <Scores />}
+            {seeScores ? <Scores /> : <Game />}
         </main>
     )
 }
