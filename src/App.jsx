@@ -5,6 +5,7 @@ import Confetti from "react-confetti"
 export default function App() {
     const [dice, setDice] = useState(allNewDice)
     const [tenzies, setTenzies] = useState(false)
+    const [rolls, setRolls] = useState(0)
 
     useEffect(() => {
         let winningValue = dice[0].value
@@ -43,6 +44,7 @@ export default function App() {
                     }
                 })
             })
+            setRolls(rolls => rolls + 1)
         } else {
             setTenzies(false)
             setDice(allNewDice)
@@ -81,7 +83,7 @@ export default function App() {
             </section>
 
             <section className="stats">
-                <div className="rolls">Rolls: 0</div>
+                <div className="rolls">Rolls: {rolls}</div>
                 <div className="time">Time: 0:00</div>
             </section>
 
