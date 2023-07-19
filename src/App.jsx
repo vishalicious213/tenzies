@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Die from "./Die"
+import Scores from "./Scores"
 import Confetti from "react-confetti"
 
 export default function App() {
@@ -8,6 +9,7 @@ export default function App() {
     const [rolls, setRolls] = useState(0)
     const [time, setTime] = useState(0)
     const [countingTime, setCountingTime] = useState(false)
+    const [seeScores, setSeeScores] = useState(false)
 
     // when countingTime is true, start incrementing with setTime
     useEffect(() => {
@@ -97,6 +99,12 @@ export default function App() {
         setCountingTime(false)
     }
 
+    function showScores() {
+        console.log("Showing scores")
+        setSeeScores(prevState => !prevState)
+        
+    }
+
     return (
         <main>
             {tenzies && <Confetti />}
@@ -120,6 +128,9 @@ export default function App() {
             </section>
 
             <button className="roll-dice" onClick={rollDice}>{tenzies ? "New Game" : "Roll"}</button>
+            
+            <div id="see-scores" onClick={showScores}>See high scores</div>
+            {seeScores && <Scores />}
         </main>
     )
 }

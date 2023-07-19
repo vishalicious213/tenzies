@@ -84,6 +84,13 @@ main {
     margin: 0 0 1rem;
 }
 
+#see-scores {
+    font-size: .75rem;
+    margin-top: .5rem;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 @media screen and (min-width: 420px) {
     .die-face {
         height: 3rem;
