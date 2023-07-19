@@ -18,9 +18,13 @@ export default function App() {
             timerInterval = setInterval(() => {
                 console.log("counting")
             }, 1000)
+        } else {
+            clearInterval(timerInterval)
         }
 
-
+        return () => {
+            clearInterval(timerInterval)
+        }
     }, [countingTime])
 
     useEffect(() => {
@@ -66,6 +70,7 @@ export default function App() {
             setTenzies(false)
             setDice(allNewDice)
             setRolls(0)
+            setCountingTime(false)
         }
 
         if (time === 0) {
@@ -102,7 +107,8 @@ export default function App() {
 
     function stopTimer() {
         console.log("stop timer")
-        clearInterval(startTimer)
+        setCountingTime(false)
+        // clearInterval(startTimer)
     }
 
     return (
