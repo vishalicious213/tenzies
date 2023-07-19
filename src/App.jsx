@@ -16,8 +16,8 @@ export default function App() {
 
         if (countingTime) {
             timerInterval = setInterval(() => {
-                console.log("counting")
-                startTimer()
+                // console.log("counting")
+                setTime(prevTime => prevTime + 1)
             }, 1000)
         } else {
             clearInterval(timerInterval)
@@ -90,16 +90,7 @@ export default function App() {
             })
         })
 
-        // startTimer()
         setCountingTime(true)
-    }
-
-    function startTimer() {
-        // console.log("start timer")
-        // setInterval(function() {
-            setTime(prevTime => prevTime + 1)
-        // }, 1000)
-        // setCountingTime(true)
     }
 
     function stopTimer() {
