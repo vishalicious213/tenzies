@@ -7,3 +7,4 @@ Additional features:
 
 - Showing number of rolls, per game
 - Showing time in seconds, per game
+- Saving and reading high scores from Firebase

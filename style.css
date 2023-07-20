@@ -26,7 +26,8 @@ main {
 }
 
 .instructions {
-    margin: 0 0 1rem;
+    margin: 0 auto 1rem;
+    max-width: 350px;
 }
 
 .stats {
@@ -34,6 +35,7 @@ main {
     display: flex;
     justify-content: space-between;
     margin: 0 0 1rem;
+    max-width: 350px;
 }
 
 #see-scores {
