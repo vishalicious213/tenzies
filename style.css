@@ -18,6 +18,7 @@ main {
     padding: 1.25rem;
     border-radius: .25rem;
     background-color: #F5F5F5;
+    margin: 0 auto;
 }
 
 .title {
